@@ -67,7 +67,7 @@ jobs:
           name: Deploy Over SSH
           command: |
             scp -r ~/flapweb-auth-service "ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com:~"
-            y
+            yes |
 
 
       # Download and cache dependencies
