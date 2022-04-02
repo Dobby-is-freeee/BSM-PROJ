@@ -66,7 +66,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp  -o StrictHostKeyChecking=no -r ~/flapweb-auth-service "ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com:~"
+            scp  -o StrictHostKeyChecking=no -r ~ "ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com:~"
 
       - run:
           command: |
