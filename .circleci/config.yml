@@ -69,6 +69,10 @@ jobs:
             scp  -o StrictHostKeyChecking=no -r ~/flapweb-auth-service "ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com:~"
             |  ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
 
+      - run:
+          command: |
+             ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
+
 
       # Download and cache dependencies
       - restore_cache:
