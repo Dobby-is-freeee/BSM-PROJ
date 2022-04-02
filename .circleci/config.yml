@@ -63,10 +63,10 @@ jobs:
 #            # 8- Remove the ingress rule
 #            ~/bin/aws ec2 revoke-security-group-ingress --region $AWS_REGION --group-id $SG_ID \
 #              --protocol tcp --port 22 --cidr $PUBLIC_IP/24
-  - run:
-      name: Deploy Over SSH
-      command: |
-        scp -r ~/flapweb-auth-service "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            scp -r ~/flapweb-auth-service "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
 
 
       # Download and cache dependencies
