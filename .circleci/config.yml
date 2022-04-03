@@ -100,7 +100,7 @@ jobs:
 #            bsm-proj \n
       - run:
           command: |
-             ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
+             ssh -o StrictHostKeyChecking=no ubuntu@ec2-13-125-126-198.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
       # Download and cache dependencies
       - restore_cache:
           keys:
