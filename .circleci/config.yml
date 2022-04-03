@@ -34,13 +34,13 @@ jobs:
       # build and push Docker image
       - run: |
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-          docker run -d --name db company/proprietary-db:1.2.3
+          docker run -d --name db Dobby-is-freeee/BSM-PROJ:1.2.3
 
       # build the application image
-      - run: docker build -t company/app:$CIRCLE_BRANCH .
+      - run: docker build -t Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH .
 
       # deploy the image
-      - run: docker push company/app:$CIRCLE_BRANCH
+      - run: docker push Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH
 #      - run:
 #          command: chmod +x gradlew
 #      - run:
