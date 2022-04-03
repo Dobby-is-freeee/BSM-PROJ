@@ -70,7 +70,11 @@ jobs:
       - run:
           command: |
             cd .. |
+      - run:
+          command: |
             cd .. |
+      - run:
+          command: |
             ls
 #      - run:
 #          command: |
