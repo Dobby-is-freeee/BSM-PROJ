@@ -27,20 +27,20 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-          docker_layer_caching: true
+#      - setup_remote_docker:
+#          version: 19.03.13
+#          docker_layer_caching: true
 
       # build and push Docker image
-      - run: |
-          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-          docker run -d --name db Dobby-is-freeee/BSM-PROJ:1.2.3
-
-      # build the application image
-      - run: docker build -t Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH .
-
-      # deploy the image
-      - run: docker push Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH
+#      - run: |
+#          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+#          docker run -d --name db Dobby-is-freeee/BSM-PROJ:1.2.3
+#
+#      # build the application image
+#      - run: docker build -t Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH .
+#
+#      # deploy the image
+#      - run: docker push Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH
 #      - run:
 #          command: chmod +x gradlew
 #      - run:
@@ -100,9 +100,9 @@ jobs:
 #            docker commit
 #            hs95blue \n
 #            bsm-proj \n
-#      - run:
-#          command: |
-#             ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
+      - run:
+          command: |
+             ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
       # Download and cache dependencies
       - restore_cache:
           keys:
