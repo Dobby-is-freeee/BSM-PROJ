@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.bsm.mapper.MemberMapper">
+    <insert id="save" parameterType="Member">
+        INSERT INTO member(email, password, name) VALUES(#{email}, #{password}, #{name});
+    </insert>
+
+    <select id="findOne" parameterType="String" resultType="Member">
+        SELECT * FROM member where name = #{playerName}
+    </select>
+
+    <insert id="saveRecord" parameterType="PersonalScore">
+        INSERT INTO personal_record(m_id, name, score, assist, rebound, steal, block, point2, point3, ft, play_date)
+        VALUES(#{m_id}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{ft}, #{playDate});
+    </insert>
+
+    <select id="findAll" resultType="Member">
+        SELECT * FROM member
+    </select>
+
+</mapper>
