@@ -26,6 +26,11 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    //DB 관련 의존성 주입
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc' //jdbc 의존성 추가
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4' //mybatis 의존성 추가
+    runtimeOnly 'mysql:mysql-connector-java'
+    //DB 관련 의존성 주입
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
