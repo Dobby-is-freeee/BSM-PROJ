@@ -17,7 +17,7 @@ public interface MemberMapper {
     Member findOne(String playerName);
 
     //선수 전체 조회
-    List<Member> findAll();
+    List<PersonalScore> findAll();
 
     //선수 경기기록 등록
     void saveRecord(PersonalScore ps);

@@ -13,14 +13,14 @@ public class PersonalScore {
     private Long point2;
     private Long point3;
     private Long ft;
-    private Date playDate;
+    private Date play_date;
 
-    public Date getPlayDate() {
-        return playDate;
+    public Date getPlay_date() {
+        return play_date;
     }
 
-    public void setPlayDate(Date playDate) {
-        this.playDate = playDate;
+    public void setPlay_date(Date play_date) {
+        this.play_date = play_date;
     }
 
     public Long getM_id() {

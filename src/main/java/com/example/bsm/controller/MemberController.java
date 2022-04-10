@@ -50,37 +50,20 @@ public class MemberController {
 
     @PostMapping("/members/personalRecord")
     public String recordRegister(PersonalScoreForm scoreForm) throws ParseException {
-        String dateStr = scoreForm.getPlayDate();
-        // 포맷터
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        // 문자열 -> Date
-        Date date = formatter.parse(dateStr);
 
-
-        PersonalScore ps = new PersonalScore();
-        ps.setName(scoreForm.getName());
-        ps.setScore(scoreForm.getScore());
-        ps.setAssist(scoreForm.getAssist());
-        ps.setRebound(scoreForm.getRebound());
-        ps.setSteal(scoreForm.getSteal());
-        ps.setBlock(scoreForm.getBlock());
-        ps.setPoint2(scoreForm.getPoint2());
-        ps.setPoint3(scoreForm.getPoint3());
-        ps.setFt(scoreForm.getFt());
-        ps.setPlayDate(date);
-
-        memberService.recordReg(ps);
+        memberService.recordReg(scoreForm);
 
         return "redirect:/";
     }
 
 
-    @GetMapping("/members")
-    public String list(Model model) {
-        List<Member> memberList = memberService.findMember();
-        model.addAttribute("memberList", memberList);
+    @GetMapping("/members/record")
+    public String list(Model model) throws ParseException {
+        List<PersonalScore> memberRecordList = memberService.findMemberRecord();
 
-        return "members/memberList";
+        model.addAttribute("memberRecordList", memberRecordList);
+
+        return "members/memberRecordList";
     }
 
 }

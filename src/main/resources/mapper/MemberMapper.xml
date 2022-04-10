@@ -15,11 +15,11 @@
 
     <insert id="saveRecord" parameterType="PersonalScore">
         INSERT INTO personal_record(m_id, name, score, assist, rebound, steal, block, point2, point3, ft, play_date)
-        VALUES(#{m_id}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{ft}, #{playDate});
+        VALUES(#{m_id}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{ft}, #{play_date});
     </insert>
 
-    <select id="findAll" resultType="Member">
-        SELECT * FROM member
+    <select id="findAll" resultType="PersonalScore">
+        SELECT * FROM personal_record
     </select>
 
 </mapper>

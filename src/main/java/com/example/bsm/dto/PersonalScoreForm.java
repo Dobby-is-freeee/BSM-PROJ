@@ -1,8 +1,6 @@
 package com.example.bsm.dto;
 
 
-import java.util.Date;
-
 public class PersonalScoreForm {
     private String name;
     private Long score;
@@ -13,14 +11,14 @@ public class PersonalScoreForm {
     private Long point2;
     private Long point3;
     private Long ft;
-    private String playDate;
+    private String play_date;
 
-    public String getPlayDate() {
-        return playDate;
+    public String getPlay_date() {
+        return play_date;
     }
 
-    public void setPlayDate(String playDate) {
-        this.playDate = playDate;
+    public void setPlay_date(String play_date) {
+        this.play_date = play_date;
     }
 
     public String getName() {
