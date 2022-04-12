@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 // 패키지명
-@MapperScan(value = "com.example.demo", sqlSessionFactoryRef = "SqlSessionFactory")
+@MapperScan(value = "com.example.bsm", sqlSessionFactoryRef = "SqlSessionFactory")
 public class MyBatisConfig {
 
     @Value("${mybatis.mapper-locations}")
