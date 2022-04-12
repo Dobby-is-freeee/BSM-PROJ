@@ -32,6 +32,10 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     //DB 관련 의존성 주입
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // MyBatis 라이브러리 의존성 추가
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 }
 
 tasks.named('test') {
