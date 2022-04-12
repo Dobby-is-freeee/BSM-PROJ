@@ -44,7 +44,7 @@ tasks.named('test') {
 jar {
     enabled = false
     manifest {
-        attributes 'Main-Class': 'com.example.demo.BsmApplication'
+        attributes 'Main-Class': 'com.example.bsm.BsmApplication'
     }
     from {
         configurations.runtimeClasspath.collect {
