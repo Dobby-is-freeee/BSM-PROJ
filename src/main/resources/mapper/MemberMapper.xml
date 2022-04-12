@@ -5,20 +5,20 @@
 
 
 <mapper namespace="com.example.bsm.mapper.MemberMapper">
-    <insert id="save" parameterType="com.example.bsm.dto.Member">
-        INSERT INTO member(email, password, name) VALUES(#{email}, #{password}, #{name});
+    <insert id="save" parameterType="Member">
+        INSERT INTO MEMBER(email, password, name) VALUES(#{email}, #{password}, #{name});
     </insert>
 
-    <select id="findOne" parameterType="String" resultType="com.example.bsm.dto.Member">
-        SELECT * FROM member where name = #{playerName}
+    <select id="findOne" parameterType="String" resultType="Member">
+        SELECT * FROM MEMBER WHERE name = #{playerName}
     </select>
 
-    <insert id="saveRecord" parameterType="com.example.bsm.dto.PersonalScore">
-        INSERT INTO PERSONAL_RECORD(m_id, name, score, assist, rebound, steal, block, point2, point3, ft, play_date)
-        VALUES(#{m_id}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{ft}, #{play_date});
+    <insert id="saveRecord" parameterType="PersonalScore">
+        INSERT INTO PERSONAL_RECORD(memberId, name, score, assist, rebound, steal, block, point2, point3, freeshot, play_date)
+        VALUES(#{memberId}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{freeshot}, #{play_date});
     </insert>
 
-    <select id="findAll" resultType="com.example.bsm.dto.PersonalScore">
+    <select id="findAll" resultType="PersonalScore">
         SELECT * FROM PERSONAL_RECORD
     </select>
 

@@ -34,6 +34,7 @@ public class MyBatisConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(DataSource);
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources(mPath));
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.example.bsm.dto");
         return sqlSessionFactoryBean.getObject();
     }
 

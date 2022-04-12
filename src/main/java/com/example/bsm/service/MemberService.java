@@ -45,7 +45,7 @@ public class MemberService {
         ps.setBlock(psf.getBlock());
         ps.setPoint2(psf.getPoint2());
         ps.setPoint3(psf.getPoint3());
-        ps.setFt(psf.getFt());
+        ps.setFreeshot(psf.getFreeshot());
         ps.setPlay_date(date);
 
         //입력한 선수이름의 id 값 찾기

@@ -1,9 +1,12 @@
 package com.example.bsm.dto;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class PersonalScore {
-    private Long m_id;
+    private Long memberId;
     private String name;
     private Long score;
     private Long assist;
@@ -12,96 +15,7 @@ public class PersonalScore {
     private Long block;
     private Long point2;
     private Long point3;
-    private Long ft;
+    private Long freeshot;
     private Date play_date;
-
-    public Date getPlay_date() {
-        return play_date;
-    }
-
-    public void setPlay_date(Date play_date) {
-        this.play_date = play_date;
-    }
-
-    public Long getM_id() {
-        return m_id;
-    }
-
-    public void setM_id(Long m_id) {
-        this.m_id = m_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getScore() {
-        return score;
-    }
-
-    public void setScore(Long score) {
-        this.score = score;
-    }
-
-    public Long getAssist() {
-        return assist;
-    }
-
-    public void setAssist(Long assist) {
-        this.assist = assist;
-    }
-
-    public Long getRebound() {
-        return rebound;
-    }
-
-    public void setRebound(Long rebound) {
-        this.rebound = rebound;
-    }
-
-    public Long getSteal() {
-        return steal;
-    }
-
-    public void setSteal(Long steal) {
-        this.steal = steal;
-    }
-
-    public Long getBlock() {
-        return block;
-    }
-
-    public void setBlock(Long block) {
-        this.block = block;
-    }
-
-    public Long getPoint2() {
-        return point2;
-    }
-
-    public void setPoint2(Long point2) {
-        this.point2 = point2;
-    }
-
-    public Long getPoint3() {
-        return point3;
-    }
-
-    public void setPoint3(Long point3) {
-        this.point3 = point3;
-    }
-
-    public Long getFt() {
-        return ft;
-    }
-
-    public void setFt(Long ft) {
-        this.ft = ft;
-    }
-
 
 }
