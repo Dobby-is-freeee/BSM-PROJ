@@ -11,7 +11,12 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:11-jdk
-      # resource_class: medium
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -19,88 +24,12 @@ jobs:
 
     working_directory: ~/repo
 
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-#      - setup_remote_docker:
-#          version: 19.03.13
-#          docker_layer_caching: true
-
-      # build and push Docker image
-#      - run: |
-#          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-#          docker run -d --name db Dobby-is-freeee/BSM-PROJ:1.2.3
-#
-#      # build the application image
-#      - run: docker build -t Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH .
-#
-#      # deploy the image
-#      - run: docker push Dobby-is-freeee/BSM-PROJ:$CIRCLE_BRANCH
-#      - run:
-#          command: chmod +x gradlew
-#      - run:
-#          command: ./gradlew build
-#      - run:
-#          name: Deploy
-#          command: |
-#            # 1- Install AWS CLI
-#            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-#            unzip awscli-bundle.zip
-#            ./awscli-bundle/install -b ~/bin/aws
-#            # 2- Get the public IP of the current CircleCI runner
-#            PUBLIC_IP=$(curl ipinfo.io/ip)
-#            # 3- Get AWS Region# TODO Don't forget to replcae by your own Region
-#            AWS_REGION=us-east-2
-#            # 4- Get SG ID# TODO Don't forget to replace by your own SG ID
-#            SG_ID=sg-XXXXXXXX
-#            # 5- Add an ingress rule to the security group
-#            ~/bin/aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID \
-#              --protocol tcp --port 22 --cidr $PUBLIC_IP/24
-#            # 6- Give the ingress rule some time to propogate
-#            sleep 5
-#            # 7- SSH to the server to deploy
-#            # TODO Change to your username
-#            EC2_USERNAME=ubuntu
-#            # TODO Change to your server's URL or public IP
-#            EC2_PUBLIC_DNS=application-server.example.com
-#            ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS \
-#            # other commands
-#            # TODO Perform steps to deploy
-#            # .
-#            # 8- Remove the ingress rule
-#            ~/bin/aws ec2 revoke-security-group-ingress --region $AWS_REGION --group-id $SG_ID \
-#              --protocol tcp --port 22 --cidr $PUBLIC_IP/24
-#      - run:
-#          name: Deploy Over SSH
-#          command: |
-#            scp  -o StrictHostKeyChecking=no -r ~/repo/build/libs/bsm-0.0.1-SNAPSHOT.jar "ubuntu@ec2-3-38-250-171.ap-northeast-2.compute.amazonaws.com:~"
-#      - run:
-#          command: |
-#          docker build -t docker-example:0.0.1 .
-#      - run:
-#          command: |
-#          sudo docker images
-#      - run:
-#          command: |
-
-#      - run:
-#          command: |
-#            docker commit
-#            hs95blue \n
-#            bsm-proj \n
-#      - run:
-#          command: |
-#            docker commit
-#            hs95blue \n
-#            bsm-proj \n
-      - run:
-          command: |
-             ssh -o StrictHostKeyChecking=no ubuntu@ec2-13-125-126-198.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
+      - run: chmod +x gradlew
+      - run: ./gradlew clean build
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -108,14 +37,32 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-#      - run: gradle dependencies
-
-      - store_artifacts:
-          path: build/libs
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
+  deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:11-jdk
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: ssh -o StrictHostKeyChecking=no ubuntu@ec2-13-125-126-198.ap-northeast-2.compute.amazonaws.com "./deploy.sh"
 
-      # run tests!
-#      - run: gradle test
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+                - develope
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
