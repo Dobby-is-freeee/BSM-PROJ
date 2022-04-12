@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+  table {
+    width: 50%;
+    border: 1px solid #444444;
+  }
+  th, td {
+    border: 1px solid #444444;
+  }
+</style>
+<body>
+<div class="container">
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>선수명</th>
+        <th>총득점</th>
+        <th>AS</th>
+        <th>리바운드</th>
+        <th>스틸</th>
+        <th>블록</th>
+        <th>2점슛</th>
+        <th>3점슛</th>
+        <th>자유투</th>
+        <th>경기날짜</th>
+
+      </tr>
+      </thead>
+      <tbody>
+        <tr th:each="memberRecord : ${memberRecordList}">
+          <td th:text="${memberRecord.name}"></td>
+          <td th:text="${memberRecord.score}"></td>
+          <td th:text="${memberRecord.assist}"></td>
+          <td th:text="${memberRecord.rebound}"></td>
+          <td th:text="${memberRecord.steal}"></td>
+          <td th:text="${memberRecord.block}"></td>
+          <td th:text="${memberRecord.point2}"></td>
+          <td th:text="${memberRecord.point3}"></td>
+          <td th:text="${memberRecord.ft}"></td>
+          <td th:text="${memberRecord.play_date}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> <!-- /container -->
+</body>
+</html>
