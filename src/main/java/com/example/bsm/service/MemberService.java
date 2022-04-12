@@ -52,7 +52,7 @@ public class MemberService {
         Member player = memberMapper.findOne(ps.getName());
         
         //선수의 id값 넣어주기
-        ps.setM_id(player.getId());
+        ps.setMemberId(player.getId());
 
         memberMapper.saveRecord(ps);
     }
