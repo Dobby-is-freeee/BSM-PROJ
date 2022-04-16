@@ -11,7 +11,9 @@ import java.util.List;
 @Mapper
 public interface PersonalRecordZuriMapper {
     
-    // 개인기록 전체조회
+    // 기록 전체 조회
     List<PersonalRecordZuriDto> getAllRecord(Pagination pagination);
 
+    // 사용자 기록 전체 조회
+    List<PersonalRecordZuriDto> getPersonalRecord(int memberId);
 }

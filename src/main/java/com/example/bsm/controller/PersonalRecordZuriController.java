@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class PersonalRecordZuriController {
         this.personalRecordZuriService = personalRecordZuriService;
     }
 
-    @RequestMapping(value="", method= RequestMethod.GET)
+    @RequestMapping(value="", method=RequestMethod.GET)
     public ResponseEntity<ResponseDto> getAllRecord(@Param("pageIndex")int pageIndex) {
 
         HttpHeaders headers = new HttpHeaders();
@@ -55,5 +56,29 @@ public class PersonalRecordZuriController {
                 .body(responseDto);
 
     }
+
+    @RequestMapping(value="{memberId}", method=RequestMethod.GET)
+    public ResponseEntity<ResponseDto> getPersonalRecord(@PathVariable("memberId") int memberId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("BSM", "PersonalRecord");
+
+        ResponseDto responseDto = new ResponseDto();
+
+        try {
+            List<PersonalRecordZuriDto> record = personalRecordZuriService.getPersonalRecord(memberId);
+            responseDto.getData().put("record", record);
+            responseDto.setSuccess(true);
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+            status = HttpStatus.BAD_REQUEST;
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(status)
+                .headers(headers)
+                .body(responseDto);
+    }
+
 
 }

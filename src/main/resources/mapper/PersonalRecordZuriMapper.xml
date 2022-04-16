@@ -22,4 +22,21 @@
         LIMIT #{startNum}, #{perCnt}
     </select>
 
+    <select id="getPersonalRecord" parameterType="int" resultType="PersonalRecordZuriDto">
+        SELECT
+            PLAY_DATE          AS "playDate",
+            NAME               AS "name",
+            SCORE              AS "score",
+            ASSIST             AS "assist",
+            REBOUND            AS "rebound",
+            STEAL              AS "steal",
+            BLOCK              AS "block",
+            POINT2             AS "point2",
+            POINT3             AS "point3",
+            FREESHOT           AS "freeshot"
+        FROM PERSONAL_RECORD PR
+        WHERE PR.MEMBERID = #{memberId}
+        ORDER BY PLAY_DATE
+    </select>
+
 </mapper>

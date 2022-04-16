@@ -25,4 +25,8 @@ public class PersonalRecordZuriService {
         return personalRecordZuriMapper.getAllRecord(pagination);
     }
 
+    public List<PersonalRecordZuriDto> getPersonalRecord(int memberId) {
+        return personalRecordZuriMapper.getPersonalRecord(memberId);
+    }
+
 }
