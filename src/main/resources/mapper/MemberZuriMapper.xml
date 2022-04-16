@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.bsm.mapper.MemberZuriMapper">
+    <select id="getAllMember" parameterType="com.example.bsm.common.Pagination" resultType="MemberZuriDto">
+        SELECT
+            ID          AS "id",
+            NAME        AS "name",
+            EMAIL       AS "email",
+            POSITION    AS "position"
+        FROM MEMBER
+        ORDER BY id
+        LIMIT #{startNum}, #{perCnt}
+    </select>
+</mapper>
