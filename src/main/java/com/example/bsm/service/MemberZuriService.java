@@ -21,7 +21,6 @@ public class MemberZuriService {
     public List<MemberZuriDto> getAllMember(int pageIndex) {
         Pagination pagination = new Pagination();
         pagination.setStartNum((pageIndex-1) * pagination.getPerCnt());
-        pagination.setPageIndex(pageIndex);
 
         return memberZuriMapper.getAllMember(pagination);
     }
