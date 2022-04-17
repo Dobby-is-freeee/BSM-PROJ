@@ -1,67 +1,75 @@
 package com.example.bsm.service;
 
-import com.example.bsm.dto.Member;
-import com.example.bsm.dto.PersonalScore;
-import com.example.bsm.dto.PersonalScoreForm;
+import com.example.bsm.vo.MemberVO;
 import com.example.bsm.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
+/**
+ * Created by Hyunsik Lee on 2022-04-15. Blog : https://hs95blue.github.io/ Github :
+ * https://github.com/hs95blue
+ */
 @Service
 public class MemberService {
-    private final MemberMapper memberMapper;
 
     @Autowired
-    public MemberService(MemberMapper memberMapper) {
-        this.memberMapper = memberMapper;
+    MemberMapper memberMapper;
+
+    /**
+     * 샘플입니다
+     * @param memberVO
+     * @return
+     */
+    public int sample(MemberVO memberVO) throws Exception {
+        int result = 0;
+        try {
+            result = memberMapper.insertMember(memberVO); // 샘플입니다 예시로 그냥 넣어둔거에욤
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 
-    //선수 등록
-    public void join(Member member) {
-        memberMapper.save(member);
+    /**
+     * @param memberVO
+     * @return
+     */
+    public int signUp(MemberVO memberVO) throws Exception {
+        int result = 0;
+        try {
+            result = memberMapper.insertMember(memberVO);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     * @param memberVO
+     * @return
+     */
+    public boolean signIn(MemberVO memberVO) throws Exception  {
+        int result = 0;
+        try {
+            result = memberMapper.loginChk(memberVO);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return result == 1 ? true : false;
+    }
+
+    /**
+     * @param memberVO
+     */
+    public void signOut(MemberVO memberVO) throws Exception  {
 
     }
 
-    //선수 경기기록 등록
-    public void recordReg(PersonalScoreForm psf) throws ParseException {
-        //PersonalScore 의 경기날짜 필더값 맞추기
-        String dateStr = psf.getPlay_date();
-        // 포맷터
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        // 문자열 -> Date
-        Date date = formatter.parse(dateStr);
-        
-        PersonalScore ps = new PersonalScore();
-        ps.setName(psf.getName());
-        ps.setScore(psf.getScore());
-        ps.setAssist(psf.getAssist());
-        ps.setRebound(psf.getRebound());
-        ps.setSteal(psf.getSteal());
-        ps.setBlock(psf.getBlock());
-        ps.setPoint2(psf.getPoint2());
-        ps.setPoint3(psf.getPoint3());
-        ps.setFreeshot(psf.getFreeshot());
-        ps.setPlay_date(date);
-
-        //입력한 선수이름의 id 값 찾기
-        Member player = memberMapper.findOne(ps.getName());
-        
-        //선수의 id값 넣어주기
-        ps.setMemberId(player.getId());
-
-        memberMapper.saveRecord(ps);
+    /**
+     * @param memberVO
+     * @return
+     */
+    public int updatePw(MemberVO memberVO) {
+        return 0;
     }
-
-    //선수 전체 조회
-    public List<PersonalScore> findMemberRecord() throws ParseException {
-
-        return memberMapper.findAll();
-    }
-
-
 }

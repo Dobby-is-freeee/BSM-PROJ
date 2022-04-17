@@ -5,21 +5,25 @@
 
 
 <mapper namespace="com.example.bsm.mapper.MemberMapper">
-    <insert id="save" parameterType="Member">
-        INSERT INTO MEMBER(email, password, name) VALUES(#{email}, #{password}, #{name});
+    <insert id="insertMember" parameterType="MemberDTO">
+        INSERT INTO MEMBER(email, password, name, position, create_date)
+        VALUES(#{email}, #{password}, #{name}, #{position}, CURRENT_TIMESTAMP)
     </insert>
 
-    <select id="findOne" parameterType="String" resultType="Member">
-        SELECT * FROM MEMBER WHERE name = #{playerName}
+    <select id="loginChk"  resultType="int">
+        SELECT count(*)
+        FROM MEMBER
+        WHERE id = #{memberId}
+          AND password = #{password}
     </select>
 
-    <insert id="saveRecord" parameterType="PersonalScore">
-        INSERT INTO PERSONAL_RECORD(memberId, name, score, assist, rebound, steal, block, point2, point3, freeshot, play_date)
-        VALUES(#{memberId}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{freeshot}, #{play_date});
-    </insert>
 
-    <select id="findAll" resultType="PersonalScore">
-        SELECT * FROM PERSONAL_RECORD
-    </select>
+    <update id="updatePassword" parameterType="MemberDTO">
+        UPDATE MEMBER
+        SET
+            password = #{newPassword}
+        WHERE id = #{memberId}
+          AND password = #{password}
+    </update>
 
 </mapper>
