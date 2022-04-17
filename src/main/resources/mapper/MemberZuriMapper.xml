@@ -13,7 +13,7 @@
             CREATE_DATE AS "createDate",
             DELETE_DATE AS "deleteDate"
         FROM MEMBER
-        ORDER BY id
+        ORDER BY ID, NAME
         LIMIT #{startNum}, #{perCnt}
     </select>
 </mapper>

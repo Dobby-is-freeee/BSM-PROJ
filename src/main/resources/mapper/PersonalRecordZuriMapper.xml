@@ -18,7 +18,7 @@
             POINT3             AS "point3",
             FREESHOT           AS "freeshot"
         FROM PERSONAL_RECORD
-        ORDER BY PLAY_DATE
+        ORDER BY PLAY_DATE, NAME
         LIMIT #{startNum}, #{perCnt}
     </select>
 
