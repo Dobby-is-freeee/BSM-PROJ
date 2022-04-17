@@ -1,13 +1,11 @@
 package com.example.bsm.controller;
 
-import com.example.bsm.dto.MemberZuriDto;
 import com.example.bsm.dto.PersonalRecordZuriDto;
 import com.example.bsm.dto.ResponseDto;
 import com.example.bsm.service.PersonalRecordZuriService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
