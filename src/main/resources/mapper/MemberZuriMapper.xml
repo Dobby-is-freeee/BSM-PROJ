@@ -9,7 +9,9 @@
             ID          AS "id",
             NAME        AS "name",
             EMAIL       AS "email",
-            POSITION    AS "position"
+            POSITION    AS "position",
+            CREATE_DATE AS "createDate",
+            DELETE_DATE AS "deleteDate"
         FROM MEMBER
         ORDER BY id
         LIMIT #{startNum}, #{perCnt}

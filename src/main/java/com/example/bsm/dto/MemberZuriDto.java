@@ -12,5 +12,7 @@ public class MemberZuriDto {
     private String name;
     private String email;
     private String position;
+    private String createDate;
+    private String deleteDate;
 
 }
