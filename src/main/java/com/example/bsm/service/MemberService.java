@@ -65,7 +65,6 @@ public class MemberService {
 
     }
 
-<<<<<<< HEAD
     /**
      * @param memberVO
      * @return
@@ -73,26 +72,4 @@ public class MemberService {
     public int updatePw(MemberVO memberVO) {
         return 0;
     }
-=======
-    //사용자 이메일 찾기
-    public Member findEmail(Member member) {
-        return memberMapper.findEmail(member);
-    }
-
-    //사용자 패스워드 변경 본인인증
-    public Member passwordChangeAuth(Member member) {
-        return memberMapper.passwordChangeAuth(member);
-    }
-
-    //사용자 조회
-    public Member checkUser(Member member){
-        return memberMapper.checkUser(member);
-    }
-    //사용자 삭제
-    public void deleteUser(Member member) {
-        memberMapper.deleteUser(member);
-    }
-
-
->>>>>>> 4225465bca098fd638dfa8663955ada899cd64c3
 }

@@ -5,7 +5,7 @@
 
 
 <mapper namespace="com.example.bsm.mapper.MemberMapper">
-    <insert id="insertMember" parameterType="MemberDTO">
+    <insert id="insertMember" parameterType="MemberVO">
         INSERT INTO MEMBER(email, password, name, position, create_date)
         VALUES(#{email}, #{password}, #{name}, #{position}, CURRENT_TIMESTAMP)
     </insert>
@@ -17,8 +17,7 @@
           AND password = #{password}
     </select>
 
-
-    <update id="updatePassword" parameterType="MemberDTO">
+    <update id="updatePassword" parameterType="MemberVO">
         UPDATE MEMBER
         SET
             password = #{newPassword}
@@ -26,32 +25,5 @@
           AND password = #{password}
     </update>
 
-    <!-- 사용자 이메일 찾기   -->
-    <select id="findEmail" parameterType="Member" resultType="Member">
-        SELECT email
-        FROM MEMBER
-        WHERE name = #{name}
-        AND delete_date IS null
-    </select>
 
-    <!-- 사용자 비밀번호 변경_인증단계   -->
-    <select id="passwordChangeAuth" parameterType="Member" resultType="Member">
-        SELECT *
-        FROM MEMBER
-        WHERE name = #{name}
-        AND email = #{email}
-    </select>
-
-    <!-- 사용자 조회 -->
-    <select id="checkUser" parameterType="Member" resultType="Member">
-        SELECT *, delete_date as deleteDate
-        FROM MEMBER
-        WHERE id = #{id}
-    </select>
-    <!-- 사용자 삭제 -->
-    <update id="deleteUser" parameterType="Member">
-        UPDATE MEMBER
-        SET delete_date = NOW()
-        WHERE id = #{id}
-    </update>
 </mapper>
