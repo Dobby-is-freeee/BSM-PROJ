@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.bsm.mapper.PersonalRecordMapper">
+    <!--선수 memeberId 조회 -->
+    <select id="selectMemberId" parameterType="String" resultType="int">
+        SELECT id FROM MEMBER WHERE name = #{name}
+    </select>
+
+
+    <!--선수 개인 기록 등록 -->
+    <insert id="insertPersonalRecord" parameterType="personalRecordVO">
+        INSERT INTO PERSONAL_RECORD(memberId, play_date, name, score, assist, rebound, steal, block, point2, point3, freeshot)
+        VALUES (#{memberId}, #{playDate}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{freeShot});
+
+        <!--선수 기록 등록 확인하기 위한 select 문 -->
+        <selectKey keyProperty="memberId" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+    </insert>
+
+
+</mapper>
