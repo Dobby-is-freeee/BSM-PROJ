@@ -28,10 +28,31 @@
 
     <!-- 사용자 이메일 찾기   -->
     <select id="findEmail" parameterType="MemberVO" resultType="MemberVO">
-        SELECT email
+        SELECT name, email
         FROM MEMBER
         WHERE name = #{name}
           AND delete_date IS null
     </select>
 
+    <!-- 사용자 비밀번호 변경_인증단계   -->
+    <select id="passwordChangeAuth" parameterType="MemberVO" resultType="MemberVO">
+        SELECT *
+        FROM MEMBER
+        WHERE name = #{name}
+          AND email = #{email}
+    </select>
+
+    <!-- 사용자 조회 -->
+    <select id="checkUser" parameterType="MemberVO" resultType="MemberVO">
+        SELECT *, delete_date as deleteDate
+        FROM MEMBER
+        WHERE id = #{id}
+    </select>
+
+    <!-- 사용자 삭제 -->
+    <update id="deleteUser" parameterType="MemberVO">
+        UPDATE MEMBER
+        SET delete_date = NOW()
+        WHERE id = #{id}
+    </update>
 </mapper>

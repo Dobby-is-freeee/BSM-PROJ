@@ -17,4 +17,12 @@ public interface MemberMapper {
     //이메일 찾기
     MemberVO findEmail(MemberVO memberVO);
 
+    //비밀번호 변경 본인인증
+    MemberVO passwordChangeAuth(MemberVO memberVO);
+
+    //사용자 조회
+    MemberVO checkUser(MemberVO memberVO);
+
+    //사용자 삭제
+    void deleteUser(MemberVO memberVO);
 }

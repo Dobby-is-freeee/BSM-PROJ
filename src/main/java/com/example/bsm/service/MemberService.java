@@ -82,4 +82,30 @@ public class MemberService {
     public MemberVO findEmail(MemberVO memberVO) {
         return memberMapper.findEmail(memberVO);
     }
+
+    /**
+     * 사용자 패스워드 변경 본인인증
+     * @param memberVO
+     * @return memverVO
+     */
+    public MemberVO passwordChangeAuth(MemberVO memberVO) {
+        return memberMapper.passwordChangeAuth(memberVO);
+    }
+
+    /**
+     * 사용자 조회
+     * @param memberVO
+     * @return memberVO
+     */
+    public MemberVO checkUser(MemberVO memberVO){
+        return memberMapper.checkUser(memberVO);
+    }
+
+    /**
+     * 사용자 삭제
+     * @param memberVO
+     */
+    public void deleteUser(MemberVO memberVO) {
+        memberMapper.deleteUser(memberVO);
+    }
 }
