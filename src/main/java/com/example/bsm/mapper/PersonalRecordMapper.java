@@ -15,11 +15,11 @@ public interface PersonalRecordMapper {
 
     int updatePersonalRecord(PersonalRecordVO personalRecordVO);
 
-    int deletePersonalRecord(int id);
+    int deletePersonalRecord(long id);
 
     // 기록 전체 조회
     List<PersonalRecordVO> getAllRecord(Pagination pagination);
 
     // 사용자 기록 전체 조회
-    List<PersonalRecordVO> getPersonalRecord(int memberId);
+    List<PersonalRecordVO> getPersonalRecord(long memberId);
 }

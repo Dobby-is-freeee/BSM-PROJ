@@ -35,7 +35,7 @@ public class PersonalRecordService {
      * @param memberId
      * @return
      */
-    public List<PersonalRecordVO> getPersonalRecord(int memberId) {
+    public List<PersonalRecordVO> getPersonalRecord(long memberId) {
         return personalRecordMapper.getPersonalRecord(memberId);
     }
 
@@ -45,7 +45,7 @@ public class PersonalRecordService {
     }
 
     //선수 이름으로 memberId 찾기
-    public int getMemberId(String name) {
+    public long getMemberId(String name) {
         return personalRecordMapper.selectMemberId(name);
     }
 
@@ -54,7 +54,7 @@ public class PersonalRecordService {
         return personalRecordMapper.updatePersonalRecord(personalRecordVO);
     }
 
-    public int deletePersonalRecord(int id) {
+    public int deletePersonalRecord(long id) {
         return personalRecordMapper.deletePersonalRecord(id);
     }
 }

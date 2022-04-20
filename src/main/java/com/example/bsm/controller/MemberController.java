@@ -1,12 +1,9 @@
 package com.example.bsm.controller;
 
-import com.example.bsm.common.ResponseObject;
 import com.example.bsm.vo.MemberVO;
 import com.example.bsm.vo.MessageVO;
 import com.example.bsm.service.MemberService;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -81,21 +78,19 @@ public class MemberController {
      * @return
      */
     @RequestMapping(value="/members", method= RequestMethod.GET)
-    public ResponseEntity<ResponseObject> getAllMember(@Param("pageIndex")int pageIndex) {
+    public ResponseEntity<MessageVO> getAllMember(@Param("pageIndex")int pageIndex) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("BSM", "Members");
 
-        ResponseObject responseDto = new ResponseObject();
+        MessageVO responseDto = new MessageVO();
 
         try {
             List<MemberVO> members = memberService.getAllMember(pageIndex);
             responseDto.getData().put("members", members);
             responseDto.getData().put("pageIndex", pageIndex);
-            responseDto.setSuccess(true);
             status = HttpStatus.OK;
         } catch (Exception e) {
-            responseDto.setSuccess(false);
             status = HttpStatus.BAD_REQUEST;
             e.printStackTrace();
         }
