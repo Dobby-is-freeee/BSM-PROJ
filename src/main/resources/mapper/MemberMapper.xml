@@ -26,4 +26,12 @@
     </update>
 
 
+    <!-- 사용자 이메일 찾기   -->
+    <select id="findEmail" parameterType="MemberVO" resultType="MemberVO">
+        SELECT email
+        FROM MEMBER
+        WHERE name = #{name}
+          AND delete_date IS null
+    </select>
+
 </mapper>

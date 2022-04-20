@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,5 +76,37 @@ public class MemberController {
         return new ResponseEntity<>(message, headers, status);
     }
 
+    /**
+     * 사용자 이메일 찾기
+     * @param memberVO
+     * @return
+     */
+    @GetMapping(value = "/members/id")
+    public ResponseEntity<MessageVO> findEmail(@RequestBody MemberVO memberVO){
+        MessageVO message = new MessageVO();
+        HttpHeaders headers= new HttpHeaders();
+        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+        HttpStatus status = HttpStatus.OK;
+
+        HashMap hashMap = new HashMap();
+
+        try {
+            memberVO = memberService.findEmail(memberVO);
+            memberVO.setEmail(memberVO.getEmail());
+
+
+            message.setStatus(HttpStatus.OK);
+            message.setMessage(memberVO.getName() + " 님의 이메일은 "+ memberVO.getEmail()+" 입니다.");
+            message.getData().put("email", memberVO.getEmail());
+
+        } catch (NullPointerException e) {
+            message.setStatus(HttpStatus.BAD_REQUEST);
+            message.setMessage("조회된 이메일이 없습니다.");
+        } catch (Exception e) {
+            message.setMessage(String.valueOf(e));
+        }
+
+        return new ResponseEntity<>(message, headers, status);
+    }
 
 }

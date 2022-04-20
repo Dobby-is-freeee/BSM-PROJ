@@ -72,4 +72,14 @@ public class MemberService {
     public int updatePw(MemberVO memberVO) {
         return 0;
     }
+
+
+    /**
+     * 사용자 이메일 찾기
+     * @param memberVO
+     * @return memverVO
+     */
+    public MemberVO findEmail(MemberVO memberVO) {
+        return memberMapper.findEmail(memberVO);
+    }
 }

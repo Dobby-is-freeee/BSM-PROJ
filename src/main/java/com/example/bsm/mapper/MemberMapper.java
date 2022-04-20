@@ -14,4 +14,7 @@ public interface MemberMapper {
 
     public int updatePassword(MemberVO memberVO);   // 비밀번호 변경
 
+    //이메일 찾기
+    MemberVO findEmail(MemberVO memberVO);
+
 }
