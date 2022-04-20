@@ -16,7 +16,7 @@ public class MessageVO {
 
   public MessageVO() {
     this.status = HttpStatus.BAD_REQUEST;
-    this.data = null;
+    this.data = new HashMap<String, Object>();
     this.message = null;
   }
 }

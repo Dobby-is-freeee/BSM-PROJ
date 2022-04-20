@@ -1,5 +1,6 @@
 package com.example.bsm.controller;
 
+import com.example.bsm.common.ResponseObject;
 import com.example.bsm.vo.MemberVO;
 import com.example.bsm.vo.MessageVO;
 import com.example.bsm.service.MemberService;
@@ -7,20 +8,20 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MemberController {
     @Autowired
     MemberService memberService;
-
+    HttpStatus status;
 
     /**
      * 샘플입니다
@@ -74,5 +75,35 @@ public class MemberController {
         return new ResponseEntity<>(message, headers, status);
     }
 
+    /**
+     * 사용자 전체조회
+     * @param pageIndex
+     * @return
+     */
+    @RequestMapping(value="/members", method= RequestMethod.GET)
+    public ResponseEntity<ResponseObject> getAllMember(@Param("pageIndex")int pageIndex) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("BSM", "Members");
+
+        ResponseObject responseDto = new ResponseObject();
+
+        try {
+            List<MemberVO> members = memberService.getAllMember(pageIndex);
+            responseDto.getData().put("members", members);
+            responseDto.getData().put("pageIndex", pageIndex);
+            responseDto.setSuccess(true);
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+            status = HttpStatus.BAD_REQUEST;
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(status)
+                .headers(headers)
+                .body(responseDto);
+
+    }
 
 }

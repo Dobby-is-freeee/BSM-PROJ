@@ -1,6 +1,6 @@
 package com.example.bsm.controller;
 
-import com.example.bsm.dto.ResponseDto;
+import com.example.bsm.common.ResponseObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ public class TestController {
     HttpStatus status;
 
     @RequestMapping(value="/connect", method= RequestMethod.GET)
-    public ResponseEntity<ResponseDto> getRequest() {
+    public ResponseEntity<ResponseObject> getRequest() {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("BSM", "Fighting");
 
-        ResponseDto response = new ResponseDto();
+        ResponseObject response = new ResponseObject();
 
         try {
             response.setSuccess(true);

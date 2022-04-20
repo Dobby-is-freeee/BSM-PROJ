@@ -25,5 +25,18 @@
           AND password = #{password}
     </update>
 
+    <!-- 사용자 전체 조회 -->
+    <select id="getAllMember" parameterType="com.example.bsm.common.Pagination" resultType="MemberVO">
+        SELECT
+            ID          AS "id",
+            NAME        AS "name",
+            EMAIL       AS "email",
+            POSITION    AS "position",
+            CREATE_DATE AS "createDate",
+            DELETE_DATE AS "deleteDate"
+        FROM MEMBER
+        ORDER BY ID, NAME
+            LIMIT #{startNum}, #{perCnt}
+    </select>
 
 </mapper>

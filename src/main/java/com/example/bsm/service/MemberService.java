@@ -1,9 +1,12 @@
 package com.example.bsm.service;
 
+import com.example.bsm.common.Pagination;
 import com.example.bsm.vo.MemberVO;
 import com.example.bsm.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Hyunsik Lee on 2022-04-15. Blog : https://hs95blue.github.io/ Github :
@@ -71,5 +74,13 @@ public class MemberService {
      */
     public int updatePw(MemberVO memberVO) {
         return 0;
+    }
+
+    // 사용자 전체 조회
+    public List<MemberVO> getAllMember(int pageIndex) {
+        Pagination pagination = new Pagination();
+        pagination.setStartNum((pageIndex-1) * pagination.getPerCnt());
+
+        return memberMapper.getAllMember(pagination);
     }
 }

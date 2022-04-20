@@ -1,11 +1,11 @@
-package com.example.bsm.dto;
+package com.example.bsm.common;
 
 import lombok.Data;
 
 import java.util.HashMap;
 
 @Data
-public class ResponseDto {
+public class ResponseObject {
 
     private Boolean success;
     private String message;

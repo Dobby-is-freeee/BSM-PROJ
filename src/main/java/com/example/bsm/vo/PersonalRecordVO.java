@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class ScoreVO {
+public class PersonalRecord {
   private Long memberId;
   private String name;
   private Long score;
