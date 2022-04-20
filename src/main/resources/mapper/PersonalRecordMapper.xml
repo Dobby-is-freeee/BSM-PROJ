@@ -12,7 +12,7 @@
 
 
     <!--선수 개인 기록 등록 -->
-    <insert id="insertPersonalRecord" parameterType="personalRecordVO">
+    <insert id="insertPersonalRecord" parameterType="personalRecordVO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO PERSONAL_RECORD(memberId, play_date, name, score, assist, rebound, steal, block, point2, point3, freeshot)
         VALUES (#{memberId}, #{playDate}, #{name}, #{score}, #{assist}, #{rebound}, #{steal}, #{block}, #{point2}, #{point3}, #{freeShot});
 
@@ -23,5 +23,18 @@
 
     </insert>
 
+    <!-- 선수 개인 기록 수정 -->
+    <update id="updatePersonalRecord" parameterType="personalRecordVO">
+        UPDATE PERSONAL_RECORD SET memberId = #{memberId}, play_date = #{playDate}, name = #{name},
+            score = #{score}, assist = #{assist}, rebound = #{rebound}, steal = #{steal}, block = #{block},
+                point2 = #{point2}, point3 = #{point3}, freeshot = #{freeShot} WHERE id = #{id};
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </update>
+
+    <delete id="deletePersonalRecord" parameterType="int">
+        DELETE FROM PERSONAL_RECORD WHERE id = #{id}
+    </delete>
 
 </mapper>

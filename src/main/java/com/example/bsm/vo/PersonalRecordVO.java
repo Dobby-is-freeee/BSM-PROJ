@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class PersonalRecordVO {
 
+    int id;
     int memberId;
     String playDate;
     String name;
