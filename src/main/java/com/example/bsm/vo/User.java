@@ -1,9 +1,6 @@
 package com.example.bsm.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,10 +11,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Data
 public class User implements UserDetails {
 
     private int id;

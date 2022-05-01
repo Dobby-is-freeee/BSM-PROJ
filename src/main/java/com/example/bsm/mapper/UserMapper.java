@@ -8,7 +8,7 @@ import java.util.Optional;
 @Repository
 public interface UserMapper {
 
-    int save(User build);
+    int save(User user);
 
     Optional<User> findByEmail(String email);
 }
