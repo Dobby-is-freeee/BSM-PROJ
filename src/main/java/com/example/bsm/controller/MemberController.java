@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -55,7 +56,7 @@ public class MemberController {
     @PostMapping("/members")
     public ResponseEntity<MessageVO> signUp(@RequestBody MemberVO memberVO) {
         MessageVO message = new MessageVO();
-        HttpHeaders headers= new HttpHeaders();
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         HttpStatus status = HttpStatus.OK;
         try {
