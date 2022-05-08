@@ -5,15 +5,36 @@
 
 
 <mapper namespace="com.example.bsm.mapper.UserMapper">
-    <!--user 조회 -->
-    <select id="findByEmail" parameterType="String" resultType="User">
-        SELECT * FROM user WHERE email = #{email}
+
+<!--    &lt;!&ndash;user 조회 &ndash;&gt;-->
+<!--    <select id="findByEmail" parameterType="String" resultType="User">-->
+<!--        SELECT * FROM user WHERE email = #{email}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;선수 개인 기록 등록 &ndash;&gt;-->
+<!--    <insert id="save" parameterType="user" useGeneratedKeys="true" keyProperty="id">-->
+<!--        INSERT INTO user(email,password)-->
+<!--        VALUES(#{email}, #{password})-->
+
+<!--        &lt;!&ndash;사용자 기록 등록 확인하기 위한 select 문 &ndash;&gt;-->
+<!--        <selectKey keyProperty="id" resultType="int" order="AFTER">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+
+<!--    </insert>-->
+
+    <!--########################################authuser Table###################################################### -->
+    <!--############################################################################################################ -->
+
+    <!--authuser 조회 -->
+    <select id="findByEmail" parameterType="String" resultType="hashMap">
+        SELECT * FROM authuser WHERE email = #{email}
     </select>
 
-    <!--선수 개인 기록 등록 -->
-    <insert id="save" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user(email,password)
-        VALUES(#{email}, #{password})
+    <!--authuser 등록 -->
+    <insert id="save" parameterType="hashMap" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO authuser(email, password, roles)
+        VALUES(#{email}, #{password}, #{roles})
 
         <!--사용자 기록 등록 확인하기 위한 select 문 -->
         <selectKey keyProperty="id" resultType="int" order="AFTER">
@@ -21,4 +42,5 @@
         </selectKey>
 
     </insert>
+
 </mapper>

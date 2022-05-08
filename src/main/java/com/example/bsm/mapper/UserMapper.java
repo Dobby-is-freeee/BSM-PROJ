@@ -3,12 +3,14 @@ package com.example.bsm.mapper;
 import com.example.bsm.vo.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
 public interface UserMapper {
 
-    int save(User user);
+    int save(Map user);
 
-    Optional<User> findByEmail(String email);
+    HashMap findByEmail(String email);
 }
